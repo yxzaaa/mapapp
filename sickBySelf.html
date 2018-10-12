@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自助导诊</title>
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <link href=" css/style.css" rel="stylesheet">
+  <style>
+    .back-img{
+      width:100%;
+    }
+    .choose-age,.choose-sex,.choose-face,.choose-section{
+      position: absolute;
+    }
+    .choose-age{
+      top:20px;
+      left:20px;
+      width:30%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .choose-sex{
+      top:20px;
+      right:20px;
+      width:30%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .choose-age>span,.choose-sex>span{
+      display: inline-block;
+      width:50%;
+      background: #eee;
+      color:#777;
+      padding:0px 10px;
+      line-height:32px;
+      font-size: 14px;
+      text-align: center;
+      height:32px;
+    }
+    .choose-age>span.active,.choose-sex>span.active{
+      background: #337ab7;
+      color:#fff;
+    }
+    .choose-age>span:first-child,.choose-sex>span:first-child{
+      border-right:1px solid #ddd;
+    }
+    .choose-face{
+      bottom:70px;
+      right:0px;
+    }
+    .choose-section{
+      bottom:30px;
+      right:0px;
+    }
+    .choose-face,.choose-section{
+      background: #337ab7;
+      color:#fff;
+      padding:0px 20px;
+      line-height: 34px;
+      font-size: 14px;
+    }
+    .sick-list{
+      position: absolute;
+      z-index: 100;
+      left:0px;
+      top:0px;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,.5);
+      justify-content: space-between;
+      display: none;
+    }
+    .sick-left-list{
+      width:50%;
+      height:100%;
+      background: #eee;
+      transition: all .3s;
+      overflow-y:auto;
+    }
+    .sick-right-list{
+      width:50%;
+      height:100%;
+      background: #ddd;
+      transition: all .3s;
+      overflow-y:auto;
+      display: none;
+    }
+    .sick-item-list{
+      width:100%;
+    }
+    .sick-item{
+      width:100%;
+      height:50px;
+      line-height: 50px;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+      overflow: hidden;
+    }
+    .sick-item.active{
+      height: auto;
+    }
+    .section-name{
+      height:50px;
+      padding:0px 20px;
+    }
+    .symptom-list{
+      width:100%;
+      background: #eee;
+    }
+    .symptom-item{
+      padding:0px 20px;
+    }
+    .symptom-item.active{
+      background: #ddd;
+    }
+    .close-list{
+      position: absolute;
+      top:10px;
+      right:10px;
+      width:30px;
+      height:30px;
+      background: rgba(18,128,216,.6);
+      color:#fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='main-container'>
+    <img src="./image/adult_male_face.jpg" usemap="#myMap" alt="" class="back-img" />
+    <!-- <map name="myMap" id="myMap">
+
+    </map> -->
+    <div class='choose-age'>
+      <span data-age='adult' class='active'>成人</span>
+      <span data-age='child'>儿童</span>
+    </div>
+    <div class='choose-sex'>
+      <span data-sex='male' class='active'>男性</span>
+      <span data-sex='female'>女性</span>
+    </div>
+    <div class='choose-face'>转身</div>
+    <div class='choose-section'>部位</div>
+    <div class='sick-list'>
+      <div class='close-list' id='closeList'>
+        <span class='glyphicon glyphicon-remove'></span>
+      </div>
+      <div class='sick-left-list'>
+        <ul class='sick-item-list' id='symptomList'>
+        </ul>
+      </div>
+      <div class='sick-right-list'>
+        <ul class='sick-item-list' id='sickList'></ul>
+      </div>
+    </div>
+  </div>
+  <div class='tab-container'>
+    <ul class='tab-list' id='tabList'>
+      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-send'></span>导航</li>
+      <li data-href='sickBySelf'><span class='glyphicon glyphicon-asterisk'></span>自助导诊</li>
+      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-education'></span>专家介绍</li>
+      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-tasks'></span>科室介绍</li>
+      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-book'></span>医院介绍</li>
+    </ul>
+  </div>
+
+  <script src="lib/jquery-2.1.4.min.js"></script>
+  <script src="lib/fengmap.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+  <script>
+    //定义tab页码
+    var tabIndex = 2;
+    var currSex = 'male';
+    var currAge = 'adult';
+    var currFace = 'face';
+    var myImg = $('.back-img');
+    $(function() {
+        //初始化tab选中状态
+        $('#tabList>li:nth-child('+tabIndex+')').addClass('active');
+        //tab选中事件
+        $('#tabList li').click(function(){
+          var $that = $(this);
+          window.location.href = './'+$that.attr('data-href')+'.html';
+        })
+        $('.choose-age span').click(function(){
+          var $that = $(this);
+          $that.siblings('span').removeClass('active');
+          $that.addClass('active');
+          currAge = $that.attr('data-age');
+          myImg.attr('src','./image/'+currAge+'_'+currSex+'_'+currFace+'.jpg');
+        })
+        $('.choose-sex span').click(function(){
+          var $that = $(this);
+          $that.siblings('span').removeClass('active');
+          $that.addClass('active');
+          currSex = $that.attr('data-sex');
+          myImg.attr('src','./image/'+currAge+'_'+currSex+'_'+currFace+'.jpg');
+        })
+        $('.choose-face').click(function(){
+          currFace = currFace == 'face'?'back':'face';
+          myImg.attr('src','./image/'+currAge+'_'+currSex+'_'+currFace+'.jpg');
+        })
+        $('.choose-section').click(function(){
+          $('.sick-list').css('display','flex');
+          //获取部位和症状数据
+          $.ajax({
+            url:'./data/sectionData.json',
+            dataType:'json',
+            type:'get',
+            timeout:30000,
+            success:function(res){
+              console.log(res);
+              var sections = res;
+              var html = '';
+              sections.map(function(item,index){
+                html += "<li class='sick-item'><div class='section-name'>"+item.section+"</div><ul class='symptom-list'>";
+                item.symptom.map(function(item,index){
+                  html += "<li class='symptom-item'>"+item+"</li>";
+                })
+                html += "</ul></li>";
+              }) 
+              $('#symptomList').html(html);
+            }
+          });
+        })
+        $('#symptomList').on('click','.section-name',function(){
+          var $that = $(this);
+          if($that.parent('li').hasClass('active')){
+            $that.parent('li').removeClass('active');
+          }else{
+            $that.parent('li').siblings('li').removeClass('active');
+            $that.parent('li').addClass('active');
+          }
+        })
+        $('#symptomList').on('click','.symptom-item',function(){
+          var $that = $(this);
+          $('.symptom-item').removeClass('active');
+          $that.addClass('active');
+          //获取该症状下的所有可能病症；
+          var symptomName = $that.html();
+          $.ajax({
+            url:'./data/sickData.json',
+            dataType:'json',
+            type:'get',
+            timeout:30000,
+            success:function(res){
+              var data = res;
+              var sickArr = [];
+              data.map(function(item,index){
+                var symptom = item.symptom;
+                var sickName = item.sickName;
+                var hasymptom = false;
+                symptom.map(function(item,index){
+                  if(symptomName == item){
+                    hasymptom = true;
+                    return;
+                  }
+                })
+                if(hasymptom == true){
+                  sickArr.push({
+                    sickName:sickName,
+                    id:index  
+                  });
+                }
+              })
+              console.log(sickArr);
+              if(sickArr.length>0){
+                var html = '';
+                sickArr.map(function(item,index){
+                  html += "<li class='sick-item' style='background:#ddd;border:none;padding:0px 20px;' data-id='"+item.id+"'>"+item.sickName+"</li>"; 
+                });
+                $('#sickList').html(html);
+                $('.sick-right-list').css('display','block');  
+              }else{
+                $('.sick-right-list').css('display','none'); 
+              }
+            }
+          });
+          $('#closeList').click(function(){
+            console.log('close');
+            $('.sick-list').css('display','none');
+            $('.sick-right-list').css('display','none');  
+          })
+          $('#sickList').on('click','li',function(){
+            var id = $(this).attr('data-id');
+            window.location.href = './sickResult.html?id='+id;
+          })
+        })
+    });
+  </script>
+</body>
+
+</html>

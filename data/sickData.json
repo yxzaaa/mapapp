@@ -1,0 +1,32 @@
+[
+    {
+        "sickName":"原发性多汗症",
+        "symptom":["出汗过多"],
+        "describe":"这是描述",
+        "recommend":["皮肤科","中医科"]
+    },
+    {
+        "sickName":"低血糖症",
+        "symptom":["头晕目眩"],
+        "describe":"这是描述",
+        "recommend":["内分泌科"]
+    },
+    {
+        "sickName":"肺炎",
+        "symptom":["呼吸困难"],
+        "describe":"这是描述",
+        "recommend":["呼吸内科","感染科"]
+    },
+    {
+        "sickName":"便秘",
+        "symptom":["大便困难"],
+        "describe":"这是描述",
+        "recommend":["内科"]
+    },
+    {
+        "sickName":"原发性高血压",
+        "symptom":["手腕疼痛"],
+        "describe":"这是描述",
+        "recommend":["中医科","心内科"]
+    }
+]
