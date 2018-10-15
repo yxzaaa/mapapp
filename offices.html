@@ -38,7 +38,7 @@
       display: block;
       width:100%;
       min-height: 90px;
-      background: #ddd;
+      background: #fff;
     }
     .mainoffice-item>p{
       width:100%;
@@ -261,7 +261,7 @@
         console.log(res);
         var html = '';
         res.map(function(item,index){
-          html += "<li class='mainoffice-item' data-office='"+item.mainoffice+"'><img src='' alt=''><p>"+item.mainoffice+"</p></li>";
+          html += "<li class='mainoffice-item' data-office='"+item.mainoffice+"'><img src='"+item.mainimg+"' alt=''><p>"+item.mainoffice+"</p></li>";
         })
         $('.mainoffice-list').html(html);
       }

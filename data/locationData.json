@@ -1,7 +1,7 @@
 [
     {
         "mainoffice":"内科",
-        "mainimg":"",
+        "mainimg":"./image/office.png",
         "lnglocation":"12961648.69996399",
         "latlocation":"4861812.860799926",
         "floorid":1,
@@ -17,7 +17,7 @@
     },
     {
         "mainoffice":"中医科",
-        "mainimg":"",
+        "mainimg":"./image/office.png",
         "lnglocation":"12961648.69996399",
         "latlocation":"4861812.860799926",
         "floorid":2,
@@ -33,7 +33,7 @@
     },
     {
         "mainoffice":"急诊科",
-        "mainimg":"",
+        "mainimg":"./image/office.png",
         "lnglocation":"12961642.64342493",
         "latlocation":"4861825.266643677",
         "floorid":6,

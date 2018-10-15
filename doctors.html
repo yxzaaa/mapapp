@@ -38,7 +38,7 @@
       display: block;
       width:100%;
       min-height: 90px;
-      background: #ddd;
+      background: #fff;
     }
     .mainoffice-item>p{
       width:100%;
@@ -114,6 +114,10 @@
       height:70px;
       background: #aaa;
       border-radius: 50%;
+      overflow: hidden;
+    }
+    .doc-avatar>img{
+      width:100%;
     }
     .doc-avatar-rect{
       width:70px;
@@ -323,7 +327,7 @@
         console.log(res);
         var html = '';
         res.map(function(item,index){
-          html += "<li class='mainoffice-item' data-office='"+item.mainoffice+"'><img src='' alt=''><p>"+item.mainoffice+"</p></li>";
+          html += "<li class='mainoffice-item' data-office='"+item.mainoffice+"'><img src='"+item.mainimg+"' alt='1'><p>"+item.mainoffice+"</p></li>";
         })
         $('.mainoffice-list').html(html);
       }
@@ -349,7 +353,7 @@
           var html = '';
           if(docArr.length > 0){
             docArr.map(function(item,index){
-              html += "<li class='doc-item' data-name='"+item.name+"'><div class='doc-avatar-rect'><img src='' alt=''></div><div class='doc-info'><h4>"+item.name+"</h4><h5>"+item.professional+" / "+item.education+"</h5><p>"+item.describe+"</p></div></li>"
+              html += "<li class='doc-item' data-name='"+item.name+"'><div class='doc-avatar-rect'><img src='./image/avatars/"+item.name+".png' alt=''></div><div class='doc-info'><h4>"+item.name+"</h4><h5>"+item.professional+" / "+item.education+"</h5><p>"+item.describe+"</p></div></li>"
             })
           }else{
             html += "<li class='doc-item'><h4 style='width:100%;text-align:center;'>暂无数据</h4></li>";
@@ -381,6 +385,7 @@
               $('.short-info>h4').html(docObj.name);
               $('.short-info>h5').html(docObj.professional+' / '+docObj.education);
               $('.doc-decribe>p').html(docObj.describe);
+              $('.doc-avatar').html("<img src='./image/avatars/"+docObj.name+".png' alt=''>");
             }
             $('.doc-box').children().removeClass('active-page');
             $('.doc-detail').addClass('active-page');
