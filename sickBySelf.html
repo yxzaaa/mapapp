@@ -128,13 +128,21 @@
       border-radius: 50%;
       text-align: center;
       line-height: 30px;
+      z-index: 200;
+    }
+    .img-map-box{
+      width:100%;
+      height:100%;
+      overflow: hidden;
     }
   </style>
 </head>
 
 <body>
   <div class='main-container'>
-    <img src="./image/adult_male_face.jpg" usemap="#myMap" alt="" class="back-img" />
+    <div class='img-map-box'>
+      <img src="./image/adult_male_face.jpg" usemap="#myMap" alt="" class="back-img" />
+    </div>
     <!-- <map name="myMap" id="myMap">
 
     </map> -->
@@ -149,9 +157,7 @@
     <div class='choose-face'>转身</div>
     <div class='choose-section'>部位</div>
     <div class='sick-list'>
-      <div class='close-list' id='closeList'>
-        <span class='glyphicon glyphicon-remove'></span>
-      </div>
+      <span  class='close-list glyphicon glyphicon-remove' id='closeList'></span>
       <div class='sick-left-list'>
         <ul class='sick-item-list' id='symptomList'>
         </ul>
@@ -162,13 +168,13 @@
     </div>
   </div>
   <div class='tab-container'>
-    <ul class='tab-list' id='tabList'>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-send'></span>导航</li>
-      <li data-href='sickBySelf'><span class='glyphicon glyphicon-asterisk'></span>自助导诊</li>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-education'></span>专家介绍</li>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-tasks'></span>科室介绍</li>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-book'></span>医院介绍</li>
-    </ul>
+      <ul class='tab-list' id='tabList'>
+        <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-send'></span>导航</li>
+        <li data-href='sickBySelf'><span class='glyphicon glyphicon-asterisk'></span>自助导诊</li>
+        <li data-href='doctors'><span class='glyphicon glyphicon-education'></span>专家介绍</li>
+        <li data-href='offices'><span class='glyphicon glyphicon-tasks'></span>科室介绍</li>
+        <li data-href='hospital'><span class='glyphicon glyphicon-book'></span>医院介绍</li>
+      </ul>
   </div>
 
   <script src="lib/jquery-2.1.4.min.js"></script>

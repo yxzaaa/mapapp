@@ -1,0 +1,18 @@
+[
+    {
+        "name":"李一明",
+        "mainoffice":"中医科",
+        "office":"中医门诊",
+        "professional":"主任医师",
+        "education":"硕士研究生",
+        "describe":"这是医生的简介"
+    },
+    {
+        "name":"李丽芳",
+        "mainoffice":"中医科",
+        "office":"中医门诊1",
+        "professional":"副主任医师",
+        "education":"博士研究生",
+        "describe":"这是医生的简介这是医生的简介这是医生的简介这是医生的简介这是医生的简介这是医生的简介"
+    }
+]

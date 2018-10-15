@@ -45,13 +45,13 @@
     </div>
   </div>
   <div class='tab-container'>
-    <ul class='tab-list' id='tabList'>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-send'></span>导航</li>
-      <li data-href='sickBySelf'><span class='glyphicon glyphicon-asterisk'></span>自助导诊</li>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-education'></span>专家介绍</li>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-tasks'></span>科室介绍</li>
-      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-book'></span>医院介绍</li>
-    </ul>
+      <ul class='tab-list' id='tabList'>
+        <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-send'></span>导航</li>
+        <li data-href='sickBySelf'><span class='glyphicon glyphicon-asterisk'></span>自助导诊</li>
+        <li data-href='doctors'><span class='glyphicon glyphicon-education'></span>专家介绍</li>
+        <li data-href='offices'><span class='glyphicon glyphicon-tasks'></span>科室介绍</li>
+        <li data-href='hospital'><span class='glyphicon glyphicon-book'></span>医院介绍</li>
+      </ul>
   </div>
 
   <script src="lib/jquery-2.1.4.min.js"></script>
@@ -196,6 +196,7 @@
 
       //创建导航路线
       function createrNavi(start,end) {
+        console.log(start,end);
         if (!navi) {
           //初始化导航对象
           navi = new fengmap.FMNavigation({

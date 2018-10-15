@@ -13,7 +13,7 @@ ul{
   width:100%;
   height:calc(100vh - 60px);
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .tab-container{
   width:100%;

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>专家简介</title>
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <link href=" css/style.css" rel="stylesheet">
+  <style>
+    .active-page{
+      display: flex !important;
+      flex-wrap: wrap;
+    }
+    .mainoffice-list{
+      width:100%;
+      padding:10px;
+      justify-content: flex-start;
+      display: none;
+      flex-wrap: wrap;
+    }
+    .doc-list{
+      width:100%;
+      padding:10px;
+      justify-content: flex-start;
+      display: none;
+      flex-wrap: wrap;
+    }
+    .doc-list>ul{
+      width:100%;
+    }
+    .mainoffice-item{
+      width:calc(25% - 10px);
+      margin:5px;
+    }
+    .mainoffice-item>img{
+      display: block;
+      width:100%;
+      min-height: 90px;
+      background: #ddd;
+    }
+    .mainoffice-item>p{
+      width:100%;
+      line-height: 32px;
+      font-size: 14px;
+      color:#777;
+      text-align: center;
+    }
+    .doc-item{
+      width:calc(100% - 10px);
+      margin:5px;
+      background: #fafafa;
+      border:1px solid #eee;
+      border-radius: 4px;
+      justify-content: flex-start;
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .doc-avatar-rect>img{
+      width:100%;
+      height:100%;
+      display: inline-block;
+    }
+    .doc-item>.doc-info{
+      width:calc(100% - 80px);
+      padding:5px;
+    }
+    .doc-item>.doc-info>h4{
+      width:100%;
+      font-size: 14px;
+      line-height: 28px;
+      margin:0px;
+      color:#777;
+    }
+    .doc-item>.doc-info>h5{
+      width:100%;
+      font-size: 13px;
+      line-height: 26px;
+      margin:0px;
+      color:#337ab7;
+    }
+    .doc-item>.doc-info>p{
+      width:100%;
+      font-size: 12px;
+      line-height: 22px;
+      margin:0px;
+      color:#777;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .doc-detail{
+      width:100%;
+      padding:10px;
+      display: none;
+    }
+    .top-info{
+      width:100%;
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .top-info>span{
+      width:40px;
+      line-height: 68px;
+      font-size: 22px;
+      color:#aaa;
+      text-align: center;
+    }
+    .doc-avatar{
+      width:100%;
+      height:150px;
+      background: #eee;
+    }
+    .doc-avatar-rect{
+      width:70px;
+      background: #ddd;
+      overflow: hidden;
+    }
+    .short-info{
+      width:calc(100% - 110px);
+      padding:5px 15px;
+    }
+    .short-info>h4{
+      font-size: 14px;
+      color:#777;
+      line-height: 28px;
+      margin: 0px;
+    }
+    .short-info>h5{
+      font-size: 12px;
+      color:#337ab7;
+      line-height: 24px;
+      margin: 0px;
+    }
+    .to-navi{
+      padding:5px 10px;
+      position: absolute;
+      background: #337ab7;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      top:20px; 
+      right:10px;
+      border-radius: 4px;
+    }
+    .work-time{
+      width:100%;
+      margin-top:10px;
+    }
+    .work-time>table{
+      border:1px solid #eee;
+      width:100%;
+    }
+    .work-time>table>thead th{
+      background: #eee;
+      color:#999;
+      line-height: 32px;
+    }
+    .work-time>table>tbody td{
+      border-top: 1px solid #eee;
+      background: #fff;
+      color:#999;
+      line-height: 32px;
+      text-align: center;
+    }
+    .item-title{
+      width: 100%;
+      padding:5px;
+      border-left: 5px solid #337ab7;
+      margin-bottom: 10px;
+    }
+    .doc-decribe{
+      padding:5px;
+    }
+    .navi-back{
+      width:100%;
+      justify-content: flex-start;
+      display: flex;
+    }
+    .navi-back>span{
+      width:40px;
+      height:40px;
+      text-align: center;
+      font-size: 20px;
+      line-height: 40px;
+      color:#aaa;
+      display: inline-block;
+    }
+    .navi-back>div{
+      height:40px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 40px;
+      color:#337ab7;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='doc-box main-container'>
+    <ul class='mainoffice-list active-page'>
+      <li class='mainoffice-item'>
+        <img src="" alt="">
+        <p></p>
+      </li>
+    </ul>
+    <div class='doc-detail'>
+      <div class='navi-back' id='backOffice'>
+        <span class='glyphicon glyphicon-chevron-left'></span>
+        <div></div>
+      </div>
+      <div class='top-info'>
+        <div class='doc-avatar'>
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class='work-time'>
+        <div class='item-title'>科室简介</div>
+        <div class='doc-decribe'>
+          <p>科室的简介</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='tab-container'>
+    <ul class='tab-list' id='tabList'>
+      <li data-href='FMNavigationApplication'><span class='glyphicon glyphicon-send'></span>导航</li>
+      <li data-href='sickBySelf'><span class='glyphicon glyphicon-asterisk'></span>自助导诊</li>
+      <li data-href='doctors'><span class='glyphicon glyphicon-education'></span>专家介绍</li>
+      <li data-href='offices'><span class='glyphicon glyphicon-tasks'></span>科室介绍</li>
+      <li data-href='hospital'><span class='glyphicon glyphicon-book'></span>医院介绍</li>
+    </ul>
+  </div>
+  <script src="lib/jquery-2.1.4.min.js"></script>
+  <script src="lib/fengmap.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+  <script>
+    var tabIndex = 4;
+    var currDocList = [];
+    var officename = '';
+    var currOffice = '';
+    $(function() {
+      //初始化tab选中状态
+      $('#tabList>li:nth-child('+tabIndex+')').addClass('active');
+      //tab选中事件
+      $('#tabList li').click(function(){
+        var $that = $(this);
+        window.location.href = './'+$that.attr('data-href')+'.html';
+      })
+    })
+    $.ajax({
+      url:'./data/locationData.json',
+      dataType:'json',
+      type:'get',
+      timeout:30000,
+      success:function(res){
+        console.log(res);
+        var html = '';
+        res.map(function(item,index){
+          html += "<li class='mainoffice-item' data-office='"+item.mainoffice+"'><img src='' alt=''><p>"+item.mainoffice+"</p></li>";
+        })
+        $('.mainoffice-list').html(html);
+      }
+    });
+    $('.mainoffice-list').on('click','li',function(){
+      var $that = $(this);
+      officename = $that.attr('data-office');
+      console.log(officename);
+      $.ajax({
+        url:'./data/doctorInfo.json',
+        dataType:'json',
+        type:'get',
+        timeout:30000,
+        success:function(res){
+          var docArr = [];
+          res.map(function(item,index){
+            if(item.mainoffice == officename){
+              docArr.push(item);
+            }
+          })
+          $('.doc-box').children().removeClass('active-page');
+          $('.doc-detail').addClass('active-page');
+          var html = '';
+          if(docArr.length > 0){
+            docArr.map(function(item,index){
+              html += "<li class='doc-item' data-name='"+item.name+"'><div class='doc-avatar-rect'><img src='' alt=''></div><div class='doc-info'><h4>"+item.name+"</h4><h5>"+item.professional+" / "+item.education+"</h5><p>"+item.describe+"</p></div></li>"
+            })
+          }else{
+            html += "<li class='doc-item'><h4 style='width:100%;text-align:center;'>暂无数据</h4></li>";
+          }
+          $('.doc-list>ul').html(html);
+          $('#backOffice>div').html(officename);
+        }
+      });
+    })
+    $('.doc-list').on('click','li',function(){
+      var $that = $(this);
+      var docname = $that.attr('data-name');
+      if(docname){
+        $.ajax({
+          url:'./data/doctorInfo.json',
+          dataType:'json',
+          type:'get',
+          timeout:30000,
+          success:function(res){
+            var docObj = {};
+            res.map(function(item,index){
+              if(item.name == docname){
+                docObj=item;
+              }
+            });
+            console.log(docObj);
+            if(!$.isEmptyObject(docObj)){
+              currOffice = docObj.office;
+              $('.short-info>h4').html(docObj.name);
+              $('.short-info>h5').html(docObj.professional+' / '+docObj.education);
+              $('.doc-decribe>p').html(docObj.describe);
+            }
+            $('.doc-box').children().removeClass('active-page');
+            $('.doc-detail').addClass('active-page');
+          }
+        });
+      }
+    });
+    //返回科室列表
+    $('#backOffice>span').click(function(){
+      $('.doc-box').children().removeClass('active-page');
+      $('.mainoffice-list').addClass('active-page');
+    })
+    //返回专家列表
+    $('#naviToDocs').click(function(){
+      $('.doc-box').children().removeClass('active-page');
+      $('.doc-list').addClass('active-page');
+    })
+    $('.to-navi').on('click',function(){
+      var $that = $(this);
+      goStrangeToOffice(officename,currOffice);
+    })
+    //直达科室
+    function goStrangeToOffice(mainoffice,office){
+      //获取科室信息
+      $.ajax({
+        url:'./data/locationData.json',
+        dataType:'json',
+        type:'get',
+        timeout:30000,
+        success:function(res){
+          res.map(function(item,index){
+            if(item.mainoffice == mainoffice){
+              item.offices.map(function(item1,index1){
+                if(item1.officename == office){
+                  sessionStorage.setItem('naviEnd',JSON.stringify({
+                      name:item1.officename,
+                      x:item1.lnglocation,
+                      y:item1.latlocation,
+                      groupId:item1.floorid
+                    })
+                  );
+                  sessionStorage.setItem('naviState','choosing');
+                  window.location.href = './FMNavigationApplication.html';
+                }
+              })
+            }
+          })
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

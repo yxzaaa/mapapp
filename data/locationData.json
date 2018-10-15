@@ -1,9 +1,11 @@
 [
     {
         "mainoffice":"内科",
+        "mainimg":"",
         "lnglocation":"12961648.69996399",
         "latlocation":"4861812.860799926",
         "floorid":1,
+        "decribe":"哈哈哈",
         "offices":[
             {
                 "officename":"痛风门诊",
@@ -14,10 +16,28 @@
         ]   
     },
     {
+        "mainoffice":"中医科",
+        "mainimg":"",
+        "lnglocation":"12961648.69996399",
+        "latlocation":"4861812.860799926",
+        "floorid":2,
+        "decribe":"哈哈哈",
+        "offices":[
+            {
+                "officename":"中医门诊1",
+                "lnglocation":"12961648.69996399",
+                "latlocation":"4861812.860799926",
+                "floorid":1
+            }
+        ]   
+    },
+    {
         "mainoffice":"急诊科",
+        "mainimg":"",
         "lnglocation":"12961642.64342493",
         "latlocation":"4861825.266643677",
         "floorid":6,
+        "decribe":"哈哈哈",
         "offices":[
             {
                 "officename":"急诊病房",
@@ -32,19 +52,19 @@
                 "floorid":6
             },
             {
-                "officename":"急诊病房1",
+                "officename":"急诊病房2",
                 "lnglocation":"12961650.85058118",
                 "latlocation":"4861813.062838989",
                 "floorid":6
             },
             {
-                "officename":"急诊病房1",
+                "officename":"急诊病房3",
                 "lnglocation":"12961650.85058118",
                 "latlocation":"4861813.062838989",
                 "floorid":6
             },
             {
-                "officename":"急诊病房1",
+                "officename":"急诊病房4",
                 "lnglocation":"12961650.85058118",
                 "latlocation":"4861813.062838989",
                 "floorid":6

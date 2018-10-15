@@ -61,6 +61,13 @@
       background:#337ab7;
       color:#fff;
     }
+    .sick-detail{
+      width:100%;
+      padding:20px;
+    }
+    .sick-text{
+      color:#777;
+    }
   </style>
 </head>
 
@@ -76,6 +83,9 @@
         <span>直达科室</span>
       </li>
     </ul>
+    <div class='sick-detail'>
+      <p class='sick-text'></p>
+    </div>
   </div>
 
   <script src="lib/jquery-2.1.4.min.js"></script>
@@ -98,6 +108,7 @@
           html += "<li class='res-office'>建议科室："+item+"<span data-office='"+item+"'>直达科室</span></li>";
         })
         $('.office-list').html(html);
+        $('.sick-text').html(data.describe);
       }
     });
     $('#backToSelf').click(function(){
@@ -106,6 +117,11 @@
     $('.office-list').on('click','li>span',function(){
       var $that = $(this);
       var office = $that.attr('data-office');
+      goStrangeToOffice(office);
+    })
+    //直达科室
+    function goStrangeToOffice(officeName){
+      //获取科室信息
       $.ajax({
         url:'./data/locationData.json',
         dataType:'json',
@@ -113,9 +129,23 @@
         timeout:30000,
         success:function(res){
           console.log(res);
+          res.map(function(item,index){
+            if(item.mainoffice == officeName){
+              console.log(officeName);
+              sessionStorage.setItem('naviEnd',JSON.stringify({
+                  name:item.mainoffice,
+                  x:item.lnglocation,
+                  y:item.latlocation,
+                  groupId:item.floorid
+                })
+              );
+              sessionStorage.setItem('naviState','choosing');
+              window.location.href = './FMNavigationApplication.html';
+            }
+          })
         }
       });
-    })
+    }
   </script>
 </body>
 </html>
